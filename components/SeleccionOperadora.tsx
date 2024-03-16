@@ -3,10 +3,19 @@ import { StyleSheet, Text, View } from "react-native"
 import { BotonOperadora } from "./BotonOperadora"
 
 
-const operadoras: { etiqueta: string, valor: string }[] = [
-	{ etiqueta: 'Telcel', valor: 'telcel' },
-	{ etiqueta: 'Movistar', valor: 'movistar' },
-	{ etiqueta: 'AT&T', valor: 'att' }
+const operadoras: { valor: string, imagen: any }[] = [
+	{
+		valor: 'telcel',
+		imagen: require('../assets/logos/telcel.png')
+	},
+	{
+		valor: 'movistar',
+		imagen: require('../assets/logos/movistar.png')
+	},
+	{
+		valor: 'att',
+		imagen: require('../assets/logos/att.png')
+	}
 ]
 
 interface SeleccionOperadoraProps {
@@ -31,7 +40,7 @@ export const SeleccionOperadora: FC<SeleccionOperadoraProps> = ({ setOperadora, 
 							key={op.valor}
 							onSelect={setOperadora}
 							seleccionado={operadora === op.valor}
-							etiqueta={op.etiqueta}
+							imagen={op.imagen}
 							valor={op.valor}
 						/>
 					))

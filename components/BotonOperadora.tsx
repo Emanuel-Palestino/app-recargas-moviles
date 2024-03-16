@@ -1,17 +1,17 @@
 import { FC } from "react"
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { Image, Pressable, StyleSheet, Text, View } from "react-native"
 
 
 interface BotonOperadoraProps {
 	onSelect: (operadora: string) => void
-	etiqueta: string
+	imagen: any
 	valor: string
 	seleccionado?: boolean
 }
 
 export const BotonOperadora: FC<BotonOperadoraProps> = ({
 	onSelect,
-	etiqueta,
+	imagen,
 	valor,
 	seleccionado = false
 }) => {
@@ -24,7 +24,11 @@ export const BotonOperadora: FC<BotonOperadoraProps> = ({
 			]}
 			onPress={() => onSelect(valor)}
 		>
-			<Text>{etiqueta}</Text>
+			{/* Select image from assets folder */}
+			<Image
+				source={imagen}
+				style={styles.imagen}
+			/>
 		</Pressable>
 	)
 
@@ -33,11 +37,15 @@ export const BotonOperadora: FC<BotonOperadoraProps> = ({
 const styles = StyleSheet.create({
 	boton: {
 		backgroundColor: 'lightgray',
-		paddingVertical: 10,
-		paddingHorizontal: 16,
+		padding: 6,
 		flexGrow: 1,
 		borderRadius: 10,
 		borderWidth: 2,
 		borderColor: 'transparent',
+	},
+	imagen: {
+		width: 'auto',
+		height: 60,
+		resizeMode: 'contain'
 	}
 })
