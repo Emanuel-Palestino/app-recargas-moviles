@@ -21,7 +21,7 @@ export const SeleccionOperadora: FC<SeleccionOperadoraProps> = ({ setOperadora, 
 			<Text
 				style={styles.titulo}
 			>
-				Selecciona la Compañía Telefónica
+				Compañía Telefónica
 			</Text>
 
 			<View style={styles.contenedorBotones}>
@@ -36,7 +36,6 @@ export const SeleccionOperadora: FC<SeleccionOperadoraProps> = ({ setOperadora, 
 						/>
 					))
 				}
-
 			</View>
 		</View >
 	)
