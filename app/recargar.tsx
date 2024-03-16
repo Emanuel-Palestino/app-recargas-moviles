@@ -1,12 +1,19 @@
 import { Link } from "expo-router"
 import { Text, View, TextInput, StyleSheet } from "react-native"
+import { useState } from "react"
+import { SeleccionOperadora } from "../components/SeleccionOperadora"
 
 
 const recargar = () => {
 
+  const [operadora, setOperadora] = useState<string>('telcel')
+
   return (
     <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Recargar</Text>
+      <Text style={styles.titulo}>Realizar Recarga</Text>
+
+      <SeleccionOperadora setOperadora={setOperadora} operadora={operadora} />
+
       <TextInput
         placeholder="Número celular"
         style={styles.input}
@@ -24,9 +31,11 @@ const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
     alignItems: 'center',
+    rowGap: 20,
+    padding: 20
   },
   titulo: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
   },
   input: {
