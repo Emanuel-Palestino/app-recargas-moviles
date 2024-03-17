@@ -1,5 +1,5 @@
 import { Link } from "expo-router"
-import { Text, View, TextInput, StyleSheet } from "react-native"
+import { Text, View, StyleSheet, Pressable, Alert } from "react-native"
 import { useState } from "react"
 import { SeleccionOperadora } from "../components/SeleccionOperadora"
 import { SeleccionTipoRecarga } from "../components/SeleccionTipoRecarga"
@@ -14,6 +14,30 @@ const recargar = () => {
   const [monto, setMonto] = useState<string>('10')
   const [numeroCelular, setNumeroCelular] = useState<string>('')
   const [confirmacionCelular, setConfirmacionCelular] = useState<string>('')
+
+  const recargar = () => {
+    // Comprobar que los números de celular coincidan
+    if (numeroCelular !== confirmacionCelular) {
+      Alert.alert('Error', 'Los números de celular no coinciden')
+      return
+    }
+
+    const numeroSanitizado = numeroCelular.replace(/\D/g, '')
+
+    // Comprobar que el número de celular tenga 10 dígitos
+    if (numeroSanitizado.length !== 10) {
+      Alert.alert('Error', 'El número de celular debe tener 10 dígitos')
+      return
+    }
+
+    console.log({
+      operadora,
+      tipoRecarga,
+      monto,
+      numeroCelular,
+      confirmacionCelular
+    })
+  }
 
   return (
     <View style={styles.contenedor}>
@@ -30,7 +54,13 @@ const recargar = () => {
         setConfirmacionCelular={setConfirmacionCelular}
       />
 
-      <Link href='/'>Volver</Link>
+      <View style={styles.contenedorAcciones}>
+        <Link href='/' style={styles.botonAtras}>Volver</Link>
+
+        <Pressable onPress={recargar}>
+          <Text style={styles.botonRecargar}>Recargar</Text>
+        </Pressable>
+      </View>
     </View>
   )
 
@@ -47,13 +77,34 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   input: {
     width: 200,
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    margin: 10,
+    margin: 10
+  },
+  contenedorAcciones: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginTop: 20
+  },
+  botonAtras: {
+    color: '#f78c50',
+    fontSize: 16
+  },
+  botonRecargar: {
+    width: 150,
+    backgroundColor: '#f78c50',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 10,
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center'
   }
 })
