@@ -36,16 +36,16 @@ export const SeleccionTipoRecarga: FC<SeleccionTipoRecargaProps> = ({ setTipoRec
 const styles = StyleSheet.create({
 	contenedor: {
 		width: '100%',
-		rowGap: 10
+		rowGap: 6
 	},
 	titulo: {
-		textAlign: 'center',
 		color: 'gray'
 	},
 	picker: {
 		width: '100%',
-		borderWidth: 1,
+		height: 54,
+		padding: 0,
 		borderRadius: 10,
-		borderColor: 'gray'
+		backgroundColor: '#eeeae8'
 	}
 })

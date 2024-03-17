@@ -20,7 +20,7 @@ export const BotonOperadora: FC<BotonOperadoraProps> = ({
 		<Pressable
 			style={[
 				styles.boton,
-				seleccionado ? { backgroundColor: 'lightblue', borderColor: 'orange' } : {}
+				seleccionado ? { backgroundColor: '#f8eee8', borderColor: '#f78c50' } : {}
 			]}
 			onPress={() => onSelect(valor)}
 		>
@@ -36,12 +36,12 @@ export const BotonOperadora: FC<BotonOperadoraProps> = ({
 
 const styles = StyleSheet.create({
 	boton: {
-		backgroundColor: 'lightgray',
+		backgroundColor: 'white',
 		padding: 6,
 		flexGrow: 1,
 		borderRadius: 10,
 		borderWidth: 2,
-		borderColor: 'transparent',
+		borderColor: '#eeeae8',
 	},
 	imagen: {
 		width: 'auto',

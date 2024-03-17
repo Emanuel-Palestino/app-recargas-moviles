@@ -54,10 +54,9 @@ export const SeleccionOperadora: FC<SeleccionOperadoraProps> = ({ setOperadora, 
 const styles = StyleSheet.create({
 	contenedor: {
 		width: '100%',
-		rowGap: 10
+		rowGap: 6
 	},
 	titulo: {
-		textAlign: 'center',
 		color: 'gray'
 	},
 	contenedorBotones: {
