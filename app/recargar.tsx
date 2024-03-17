@@ -4,6 +4,7 @@ import { useState } from "react"
 import { SeleccionOperadora } from "../components/SeleccionOperadora"
 import { SeleccionTipoRecarga } from "../components/SeleccionTipoRecarga"
 import { SeleccionMontoRecarga } from "../components/SeleccionMontoRecarga"
+import { NumeroCelular } from "../components/NumeroCelular"
 
 
 const recargar = () => {
@@ -11,6 +12,8 @@ const recargar = () => {
   const [operadora, setOperadora] = useState<string>('telcel')
   const [tipoRecarga, setTipoRecarga] = useState<string>('normal')
   const [monto, setMonto] = useState<string>('10')
+  const [numeroCelular, setNumeroCelular] = useState<string>('')
+  const [confirmacionCelular, setConfirmacionCelular] = useState<string>('')
 
   return (
     <View style={styles.contenedor}>
@@ -22,11 +25,11 @@ const recargar = () => {
 
       <SeleccionMontoRecarga setMonto={setMonto} monto={monto} />
 
-      <TextInput
-        placeholder="Número celular"
-        style={styles.input}
-        keyboardType="numeric"
+      <NumeroCelular
+        setNumeroCelular={setNumeroCelular}
+        setConfirmacionCelular={setConfirmacionCelular}
       />
+
       <Link href='/'>Volver</Link>
     </View>
   )
