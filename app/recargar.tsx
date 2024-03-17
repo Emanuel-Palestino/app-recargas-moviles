@@ -3,12 +3,14 @@ import { Text, View, TextInput, StyleSheet } from "react-native"
 import { useState } from "react"
 import { SeleccionOperadora } from "../components/SeleccionOperadora"
 import { SeleccionTipoRecarga } from "../components/SeleccionTipoRecarga"
+import { SeleccionMontoRecarga } from "../components/SeleccionMontoRecarga"
 
 
 const recargar = () => {
 
   const [operadora, setOperadora] = useState<string>('telcel')
   const [tipoRecarga, setTipoRecarga] = useState<string>('normal')
+  const [monto, setMonto] = useState<string>('10')
 
   return (
     <View style={styles.contenedor}>
@@ -17,6 +19,8 @@ const recargar = () => {
       <SeleccionOperadora setOperadora={setOperadora} operadora={operadora} />
 
       <SeleccionTipoRecarga setTipoRecarga={setTipoRecarga} tipoRecarga={tipoRecarga} />
+
+      <SeleccionMontoRecarga setMonto={setMonto} monto={monto} />
 
       <TextInput
         placeholder="Número celular"
