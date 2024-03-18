@@ -1,5 +1,5 @@
 import { Link } from "expo-router"
-import { Text, View, StyleSheet, Pressable, Alert } from "react-native"
+import { Text, View, StyleSheet, Alert, KeyboardAvoidingView, Platform, Pressable, Keyboard } from "react-native"
 import { useState } from "react"
 import { SeleccionOperadora } from "../components/SeleccionOperadora"
 import { SeleccionTipoRecarga } from "../components/SeleccionTipoRecarga"
@@ -40,28 +40,35 @@ const recargar = () => {
   }
 
   return (
-    <View style={styles.contenedor}>
-      <Text style={styles.titulo}>Realizar Recarga</Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View style={styles.contenedor}>
+        <Text style={styles.titulo}>Realizar Recarga</Text>
 
-      <SeleccionOperadora setOperadora={setOperadora} operadora={operadora} />
+        <SeleccionOperadora setOperadora={setOperadora} operadora={operadora} />
 
-      <SeleccionTipoRecarga setTipoRecarga={setTipoRecarga} tipoRecarga={tipoRecarga} />
+        <SeleccionTipoRecarga setTipoRecarga={setTipoRecarga} tipoRecarga={tipoRecarga} />
 
-      <SeleccionMontoRecarga setMonto={setMonto} monto={monto} />
+        <SeleccionMontoRecarga setMonto={setMonto} monto={monto} />
 
-      <NumeroCelular
-        setNumeroCelular={setNumeroCelular}
-        setConfirmacionCelular={setConfirmacionCelular}
-      />
+        <NumeroCelular
+          setNumeroCelular={setNumeroCelular}
+          setConfirmacionCelular={setConfirmacionCelular}
+        />
 
-      <View style={styles.contenedorAcciones}>
-        <Link href='/' style={styles.botonAtras}>Volver</Link>
+        <View style={{ flex: 1 }} />
 
-        <Pressable onPress={recargar}>
-          <Text style={styles.botonRecargar}>Recargar</Text>
-        </Pressable>
+        <View style={styles.contenedorAcciones}>
+          <Link href='/' style={styles.botonAtras}>Volver</Link>
+
+          <Pressable onPress={recargar}>
+            <Text style={styles.botonRecargar}>Recargar</Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   )
 
 }
@@ -72,6 +79,7 @@ const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'flex-end',
     rowGap: 20,
     padding: 20
   },
@@ -91,7 +99,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    marginTop: 20
   },
   botonAtras: {
     color: '#f78c50',
