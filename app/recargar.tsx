@@ -5,6 +5,8 @@ import { SeleccionOperadora } from "../components/SeleccionOperadora"
 import { SeleccionTipoRecarga } from "../components/SeleccionTipoRecarga"
 import { SeleccionMontoRecarga } from "../components/SeleccionMontoRecarga"
 import { NumeroCelular } from "../components/NumeroCelular"
+import { SeleccionTipoCliente } from "../components/SeleccionTipoCliente"
+import { SeleccionCliente } from "../components/SeleccionCliente"
 
 
 const recargar = () => {
@@ -14,6 +16,8 @@ const recargar = () => {
   const [monto, setMonto] = useState<string>('10')
   const [numeroCelular, setNumeroCelular] = useState<string>('')
   const [confirmacionCelular, setConfirmacionCelular] = useState<string>('')
+  const [tipoCliente, setTipoCliente] = useState<string>('nuevo')
+  const [cliente, setCliente] = useState<string>('1')
 
   const recargar = () => {
     // Comprobar que los números de celular coincidan
@@ -35,7 +39,9 @@ const recargar = () => {
       tipoRecarga,
       monto,
       numeroCelular,
-      confirmacionCelular
+      confirmacionCelular,
+      tipoCliente,
+      cliente
     })
   }
 
@@ -53,10 +59,23 @@ const recargar = () => {
 
         <SeleccionMontoRecarga setMonto={setMonto} monto={monto} />
 
-        <NumeroCelular
-          setNumeroCelular={setNumeroCelular}
-          setConfirmacionCelular={setConfirmacionCelular}
-        />
+        <SeleccionTipoCliente setTipoCliente={setTipoCliente} tipoCliente={tipoCliente} />
+
+        {
+          tipoCliente === 'nuevo' &&
+          <NumeroCelular
+            setNumeroCelular={setNumeroCelular}
+            setConfirmacionCelular={setConfirmacionCelular}
+          />
+        }
+
+        {
+          tipoCliente === 'cliente' &&
+          <SeleccionCliente
+            setCliente={setCliente}
+            cliente={cliente}
+          />
+        }
 
         <View style={{ flex: 1 }} />
 
@@ -80,19 +99,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    rowGap: 20,
-    padding: 20
+    rowGap: 18,
+    paddingHorizontal: 20,
+    paddingVertical: 10
   },
   titulo: {
     fontSize: 22,
     fontWeight: 'bold'
-  },
-  input: {
-    width: 200,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    margin: 10
   },
   contenedorAcciones: {
     flexDirection: 'row',
