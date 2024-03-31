@@ -7,6 +7,7 @@ import { SeleccionMontoRecarga } from "../components/SeleccionMontoRecarga"
 import { NumeroCelular } from "../components/NumeroCelular"
 import { SeleccionTipoCliente } from "../components/SeleccionTipoCliente"
 import { SeleccionCliente } from "../components/SeleccionCliente"
+import { ModalRecargaRealizada } from "../components/ModalRecargaRealizada"
 
 
 const recargar = () => {
@@ -19,7 +20,9 @@ const recargar = () => {
   const [tipoCliente, setTipoCliente] = useState<string>('nuevo')
   const [cliente, setCliente] = useState<string>('1')
 
-  const recargar = () => {
+  const [modalAbierto, setModalAbierto] = useState<boolean>(false)
+
+  const realizarRecarga = () => {
     // Comprobar que los números de celular coincidan
     if (numeroCelular !== confirmacionCelular) {
       Alert.alert('Error', 'Los números de celular no coinciden')
@@ -33,6 +36,11 @@ const recargar = () => {
       Alert.alert('Error', 'El número de celular debe tener 10 dígitos')
       return
     }
+
+    // Ocultar el teclado
+    Keyboard.dismiss()
+
+    setModalAbierto(true)
 
     console.log({
       operadora,
@@ -82,11 +90,13 @@ const recargar = () => {
         <View style={styles.contenedorAcciones}>
           <Link href='/' style={styles.botonAtras}>Volver</Link>
 
-          <Pressable onPress={recargar}>
+          <Pressable onPress={realizarRecarga}>
             <Text style={styles.botonRecargar}>Recargar</Text>
           </Pressable>
         </View>
       </View>
+
+      <ModalRecargaRealizada abierto={modalAbierto} onClose={() => { }} />
     </KeyboardAvoidingView>
   )
 
